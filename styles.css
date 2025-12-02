@@ -135,17 +135,22 @@ header::before {
 }
 
 .logo-icon {
+    font-size: 32px;
+    display: inline-block;
     animation: logo-pulse 3s ease-in-out infinite;
+    filter: hue-rotate(270deg) saturate(1.5) brightness(1.1);
 }
 
 @keyframes logo-pulse {
     0%, 100% { 
         opacity: 1;
-        filter: drop-shadow(0 0 8px rgba(196, 95, 255, 0.6));
+        filter: hue-rotate(270deg) saturate(1.5) brightness(1.1) drop-shadow(0 0 8px rgba(196, 95, 255, 0.6));
+        transform: scale(1);
     }
     50% { 
-        opacity: 0.85;
-        filter: drop-shadow(0 0 16px rgba(196, 95, 255, 0.8));
+        opacity: 0.9;
+        filter: hue-rotate(270deg) saturate(1.5) brightness(1.2) drop-shadow(0 0 16px rgba(95, 173, 255, 0.8));
+        transform: scale(1.05);
     }
 }
 
