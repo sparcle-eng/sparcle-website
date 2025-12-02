@@ -110,21 +110,24 @@ header::before {
 .header-content {
     display: flex;
     flex-direction: column;
-    gap: 16px;
-    padding: 20px 32px;
+    /* gap: 16px; */
+    padding: 0;
     position: relative;
 }
 
 .header-top {
     display: flex;
     align-items: center;
+    padding: 8px;
 }
 
-.header-bottom {
+.header-bottom{
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 32px;
+    padding: 8px 16px;
+    background: rgb(125 150 255 / 7%);
+    border-radius: 0 0 16px 16px;
 }
 
 .logo {
@@ -137,36 +140,37 @@ header::before {
 .logo-icon {
     font-size: 32px;
     display: inline-block;
-    animation: logo-breathe 4s ease-in-out infinite;
-    filter: hue-rotate(270deg) saturate(1.5) brightness(1.1);
     transform-origin: center center;
+    filter: hue-rotate(270deg) saturate(1.5) brightness(1.1);
+    
+    /* Force Hardware Acceleration: essential for smoothness */
+    transform: translateZ(0,0,0); 
 }
 
 @keyframes logo-breathe {
     0%, 100% { 
         opacity: 1;
-        filter: hue-rotate(270deg) saturate(1.5) brightness(1.1) drop-shadow(0 0 8px rgba(196, 95, 255, 0.6));
-        transform: scale(1) rotate(0deg);
+        /* Use CSS variables or simpler values if possible to reduce computation */
+        /* Include translateZ(0) in all transforms for consistency */
+        transform: scale(1) rotate(0deg) translateZ(0);
     }
     25% {
         opacity: 0.95;
-        filter: hue-rotate(260deg) saturate(1.6) brightness(1.15) drop-shadow(0 0 12px rgba(150, 95, 255, 0.7));
-        transform: scale(1.08) rotate(-5deg);
+        /* Consistent, smaller steps between 0/50/100 for better blending */
+        transform: scale(1.06) rotate(-3deg) translateZ(0); /* Reduced scale and rotation */
     }
     50% { 
         opacity: 0.9;
-        filter: hue-rotate(250deg) saturate(1.7) brightness(1.2) drop-shadow(0 0 16px rgba(95, 173, 255, 0.8));
-        transform: scale(1.12) rotate(0deg);
+        transform: scale(1.1) rotate(0deg) translateZ(0); /* Reduced peak scale */
     }
     75% {
         opacity: 0.95;
-        filter: hue-rotate(260deg) saturate(1.6) brightness(1.15) drop-shadow(0 0 12px rgba(150, 95, 255, 0.7));
-        transform: scale(1.08) rotate(5deg);
+        transform: scale(1.06) rotate(3deg) translateZ(0); /* Reduced scale and rotation */
     }
 }
 
 .logo-text {
-    font-size: 14px;
+    font-size: 18px;
     font-weight: 700;
     color: rgba(255, 255, 255, 0.95);
     min-height: 21px;
