@@ -47,12 +47,44 @@ document.getElementById('waitlistForm').addEventListener('submit', async (e) => 
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+        const targetId = this.getAttribute('href');
+        const target = document.querySelector(targetId);
+        
         if (target) {
+            // Update active tab
+            document.querySelectorAll('.nav-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            this.classList.add('active');
+            
+            // Smooth scroll to target
             target.scrollIntoView({
                 behavior: 'smooth',
                 block: 'start'
             });
+        }
+    });
+});
+
+// Update active tab on scroll
+const sections = document.querySelectorAll('section[id]');
+const navTabs = document.querySelectorAll('.nav-tab');
+
+window.addEventListener('scroll', () => {
+    let current = '';
+    
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop;
+        const sectionHeight = section.clientHeight;
+        if (pageYOffset >= (sectionTop - 200)) {
+            current = section.getAttribute('id');
+        }
+    });
+    
+    navTabs.forEach(tab => {
+        tab.classList.remove('active');
+        if (tab.getAttribute('href') === `#${current}`) {
+            tab.classList.add('active');
         }
     });
 });
