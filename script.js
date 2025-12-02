@@ -52,48 +52,48 @@ window.addEventListener('DOMContentLoaded', () => {
     setTimeout(typeText, 500);
 });
 
-// Simple client-side email collection (for demo purposes)
-// In production, replace with actual backend API
+// Waitlist form submission via Formspree
 
 document.getElementById('waitlistForm').addEventListener('submit', async (e) => {
     e.preventDefault();
     
+    const form = e.target;
     const emailInput = document.getElementById('emailInput');
     const formMessage = document.getElementById('formMessage');
-    const email = emailInput.value.trim();
+    const submitButton = form.querySelector('button[type="submit"]');
+    const originalButtonText = submitButton.textContent;
     
-    // Basic email validation
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailRegex.test(email)) {
-        formMessage.textContent = 'Please enter a valid email address.';
-        formMessage.className = 'form-note error';
-        return;
-    }
+    // Show loading state
+    submitButton.textContent = 'Joining...';
+    submitButton.disabled = true;
+    formMessage.textContent = '';
     
-    // Store in localStorage for now (replace with API call in production)
     try {
-        const waitlist = JSON.parse(localStorage.getItem('sparcle_waitlist') || '[]');
+        const response = await fetch(form.action, {
+            method: 'POST',
+            body: new FormData(form),
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
         
-        if (waitlist.includes(email)) {
-            formMessage.textContent = 'You\'re already on the waitlist!';
-            formMessage.className = 'form-note';
-            return;
+        if (response.ok) {
+            // Success feedback
+            formMessage.textContent = '✨ Thanks! We\'ll notify you when Sparcle launches.';
+            formMessage.className = 'form-note success';
+            emailInput.value = '';
+        } else {
+            formMessage.textContent = 'Oops! Something went wrong. Please try again.';
+            formMessage.className = 'form-note error';
         }
-        
-        waitlist.push(email);
-        localStorage.setItem('sparcle_waitlist', JSON.stringify(waitlist));
-        
-        // Success feedback
-        formMessage.textContent = '✨ Thanks! We\'ll notify you when Sparcle launches.';
-        formMessage.className = 'form-note success';
-        emailInput.value = '';
-        
-        // Optional: Send to analytics or backend
-        console.log('Waitlist signup:', email);
         
     } catch (error) {
         formMessage.textContent = 'Oops! Something went wrong. Please try again.';
         formMessage.className = 'form-note error';
+    } finally {
+        // Reset button state
+        submitButton.textContent = originalButtonText;
+        submitButton.disabled = false;
     }
 });
 
