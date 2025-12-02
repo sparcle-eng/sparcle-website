@@ -1,3 +1,101 @@
+/* Responsive baseline and layout constraints */
+:root {
+    --site-min-width: 320px;
+    --content-max-width: 1200px;
+    --content-padding-x: 16px;
+}
+
+html, body {
+    min-width: var(--site-min-width);
+}
+
+.container {
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+    padding-left: var(--content-padding-x);
+    padding-right: var(--content-padding-x);
+}
+
+/* Headline scales safely across devices */
+.hero .headline {
+    font-size: clamp(28px, 6vw, 48px);
+    line-height: 1.1;
+}
+
+/* Navigation can wrap to avoid overflow on small screens */
+.header-nav {
+    display: flex;
+    flex-wrap: nowrap; /* keep tabs on one line */
+    gap: 8px;
+    overflow-x: auto; /* allow horizontal scroll if needed */
+    -webkit-overflow-scrolling: touch;
+    white-space: nowrap;
+}
+
+.header-nav .nav-tab {
+    flex: 0 0 auto; /* prevent tabs from shrinking */
+}
+
+@media (max-width: 600px) {
+    .header-nav {
+        gap: 6px;
+    }
+    .header-nav .nav-tab {
+        padding: 6px 10px;
+        font-size: 0.95rem;
+    }
+}
+
+/* Feature grid auto-fits cards responsively */
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 16px;
+}
+
+/* Waitlist form fields maintain usable sizes */
+.waitlist-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.waitlist-form input[type="email"] {
+    width: min(100%, 420px);
+    min-width: 240px;
+}
+
+.waitlist-form button {
+    min-width: 140px;
+}
+/* Logo container clamps width and prevents overflow */
+.logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    max-width: 60vw; /* responsive cap */
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.logo-icon {
+    flex: 0 0 auto;
+}
+
+/* Animated logo text ellipsizes when space runs out */
+.logo-text {
+    display: inline-block;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 100%;
+}
+
+@media (max-width: 600px) {
+    .logo {
+        max-width: 80vw;
+    }
+}
 :root {
     --primary: #c45fff;
     --primary-dark: #a030e0;

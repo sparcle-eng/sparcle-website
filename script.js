@@ -1,54 +1,70 @@
-// Typing animation for header with rotating placeholders
+// Typing animation with overflow detection and ellipsis
 const typingText = document.getElementById('typingText');
 const placeholders = [
-    "Sparcle - AI-first productivity for macOS",
-    "Type app name to launch...",
-    "Press ↓ for quick access - @app, @file, @plugin...",
-    "Ask anything... e.g. how's weather, organize my docs dir, play music, !<terminal-command> etc...",
-    "Connects to any LLM - your private/local or popular providers...",
-    "Privacy First - data is sanitized before leaving your device..."
+    "Sparcle — AI-first productivity for macOS",
+    "Type app name to launch",
+    "Press ↓ for quick access: @app, @file, @plugin",
+    "Ask anything: weather, organize docs, play music, !command",
+    "Connects to any LLM: private/local or popular providers",
+    "Privacy First: data sanitized before leaving your device"
 ];
+
 let currentPlaceholderIndex = 0;
 let charIndex = 0;
-let isDeleting = false;
 let typingSpeed = 80;
-let deletingSpeed = 40;
-let pauseBeforeDelete = 2000;
-let pauseBeforeNext = 500;
+let pauseBeforeNext = 1200;
+const ellipsis = "…";
+
+function fits(candidate) {
+    if (!typingText) return true;
+    typingText.textContent = candidate;
+    // Force reflow for accurate measurement
+    // eslint-disable-next-line no-unused-expressions
+    typingText.offsetWidth;
+    return typingText.scrollWidth <= typingText.clientWidth;
+}
 
 function typeText() {
     const currentText = placeholders[currentPlaceholderIndex];
-    
-    if (!isDeleting) {
-        // Typing
-        typingText.textContent = currentText.substring(0, charIndex + 1);
-        charIndex++;
-        
-        if (charIndex === currentText.length) {
-            // Finished typing, pause then start deleting
-            isDeleting = true;
-            setTimeout(typeText, pauseBeforeDelete);
-            return;
-        }
-        setTimeout(typeText, typingSpeed);
-    } else {
-        // Deleting
-        typingText.textContent = currentText.substring(0, charIndex - 1);
-        charIndex--;
-        
-        if (charIndex === 0) {
-            // Finished deleting, move to next placeholder
-            isDeleting = false;
+
+    const next = currentText.substring(0, charIndex + 1);
+
+    // If adding next char would overflow, back off to fit and finalize with ellipsis
+    if (!fits(next)) {
+        let j = charIndex;
+        while (j > 0 && !fits(currentText.substring(0, j) + ellipsis)) j--;
+        typingText.textContent = currentText.substring(0, j) + ellipsis;
+        // Pause, then move to next placeholder
+        setTimeout(() => {
             currentPlaceholderIndex = (currentPlaceholderIndex + 1) % placeholders.length;
-            setTimeout(typeText, pauseBeforeNext);
-            return;
-        }
-        setTimeout(typeText, deletingSpeed);
+            charIndex = 0;
+            typingText.textContent = "";
+            setTimeout(typeText, 400);
+        }, pauseBeforeNext);
+        return;
     }
+
+    typingText.textContent = next;
+    charIndex++;
+
+    if (charIndex >= currentText.length) {
+        // Finished typing; if still fitting, leave as-is and pause before next
+        setTimeout(() => {
+            currentPlaceholderIndex = (currentPlaceholderIndex + 1) % placeholders.length;
+            charIndex = 0;
+            typingText.textContent = "";
+            setTimeout(typeText, 400);
+        }, pauseBeforeNext);
+        return;
+    }
+
+    setTimeout(typeText, typingSpeed);
 }
 
 // Start typing animation when page loads
 window.addEventListener('DOMContentLoaded', () => {
+    if (!typingText) return;
+    typingText.textContent = "";
     setTimeout(typeText, 500);
 });
 
