@@ -1,3 +1,21 @@
+// Typing animation for header
+const typingText = document.getElementById('typingText');
+const textToType = 'Sparcle - AI-first productivity for macOS';
+let charIndex = 0;
+
+function typeText() {
+    if (charIndex < textToType.length) {
+        typingText.textContent = textToType.substring(0, charIndex + 1);
+        charIndex++;
+        setTimeout(typeText, 80);
+    }
+}
+
+// Start typing animation when page loads
+window.addEventListener('DOMContentLoaded', () => {
+    setTimeout(typeText, 500);
+});
+
 // Simple client-side email collection (for demo purposes)
 // In production, replace with actual backend API
 
