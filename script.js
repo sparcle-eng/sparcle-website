@@ -1,13 +1,49 @@
-// Typing animation for header
+// Typing animation for header with rotating placeholders
 const typingText = document.getElementById('typingText');
-const textToType = 'Sparcle - AI-first productivity for macOS';
+const placeholders = [
+    "Sparcle - AI-first productivity for macOS",
+    "Type app name to launch...",
+    "Press ↓ for quick access - @app, @file, @plugin...",
+    "Ask anything... e.g. how's weather, organize my docs dir, play music, !<terminal-command> etc...",
+    "Connects to any LLM - your private/local or popular providers...",
+    "Privacy First - data is sanitized before leaving your device..."
+];
+let currentPlaceholderIndex = 0;
 let charIndex = 0;
+let isDeleting = false;
+let typingSpeed = 80;
+let deletingSpeed = 40;
+let pauseBeforeDelete = 2000;
+let pauseBeforeNext = 500;
 
 function typeText() {
-    if (charIndex < textToType.length) {
-        typingText.textContent = textToType.substring(0, charIndex + 1);
+    const currentText = placeholders[currentPlaceholderIndex];
+    
+    if (!isDeleting) {
+        // Typing
+        typingText.textContent = currentText.substring(0, charIndex + 1);
         charIndex++;
-        setTimeout(typeText, 80);
+        
+        if (charIndex === currentText.length) {
+            // Finished typing, pause then start deleting
+            isDeleting = true;
+            setTimeout(typeText, pauseBeforeDelete);
+            return;
+        }
+        setTimeout(typeText, typingSpeed);
+    } else {
+        // Deleting
+        typingText.textContent = currentText.substring(0, charIndex - 1);
+        charIndex--;
+        
+        if (charIndex === 0) {
+            // Finished deleting, move to next placeholder
+            isDeleting = false;
+            currentPlaceholderIndex = (currentPlaceholderIndex + 1) % placeholders.length;
+            setTimeout(typeText, pauseBeforeNext);
+            return;
+        }
+        setTimeout(typeText, deletingSpeed);
     }
 }
 
