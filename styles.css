@@ -444,13 +444,11 @@ header::before {
 /* Footer */
 footer {
     border-top: 1px solid var(--glass-border);
-    padding: 40px 0;
-    margin-top: 40px;
+    padding: 25px 24px;
+    margin: 40px -24px 0;
     background: var(--glass-bg);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    margin: 40px -24px 0;
-    padding: 40px 24px;
 }
 
 .footer-content {
