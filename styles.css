@@ -124,20 +124,7 @@ body {
     --glow: rgba(196, 95, 255, 0.5);
 }
 
-@media (prefers-color-scheme: light) {
-    :root {
-        --text-primary: #1d1d1f;
-        --text-secondary: #515154;
-        --text-light: #86868b;
-        --bg: #f5f5f7;
-        --bg-secondary: #ffffff;
-        --glass-bg: rgba(255, 255, 255, 0.7);
-        --glass-border: rgba(196, 95, 255, 0.15);
-        --border: rgba(0, 0, 0, 0.1);
-        --shadow: rgba(196, 95, 255, 0.2);
-        --shadow-elevated: rgba(196, 95, 255, 0.25);
-    }
-}
+
 
 * {
     margin: 0;
