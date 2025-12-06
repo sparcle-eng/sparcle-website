@@ -1,16 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Sparcle - AI-powered productivity assistant for macOS. Coming soon.">
     <meta property="og:title" content="Sparcle - AI-Powered Productivity for macOS">
-    <meta property="og:description" content="Transform your Mac into an AI-powered productivity powerhouse. Coming soon.">
+    <meta property="og:description"
+        content="Transform your Mac into an AI-powered productivity powerhouse. Coming soon.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://sparcle.app">
     <title>Sparcle - AI-Powered Productivity for macOS</title>
     <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <div class="container">
         <header>
@@ -34,12 +37,12 @@
                             <span class="tab-icon">⌘</span>
                             <span>Terminal</span>
                         </a>
-                    <a href="#settings" class="nav-tab">
-                        <span class="tab-icon">⚙️</span>
-                        <span>Settings</span>
-                    </a>
-                </nav>
-            </div>
+                        <a href="#settings" class="nav-tab">
+                            <span class="tab-icon">⚙️</span>
+                            <span>Settings</span>
+                        </a>
+                    </nav>
+                </div>
         </header>
 
         <main>
@@ -47,29 +50,76 @@
                 <span class="badge">✨ Coming Soon</span>
                 <h2 class="headline">AI-Powered Productivity<br>for macOS</h2>
                 <p class="subheadline">
-                    Transform your Mac into an intelligent workspace. 
-                    Sparcle brings AI assistance right to your fingertips with natural language commands, 
+                    Transform your Mac into an intelligent workspace.
+                    Sparcle brings AI assistance right to your fingertips with natural language commands,
                     smart context awareness, and powerful automation.
                 </p>
 
                 <form class="waitlist-form" id="waitlistForm" action="https://formspree.io/f/mzznggww" method="POST">
-                    <input 
-                        type="email" 
-                        name="email"
-                        placeholder="Enter your email" 
-                        required
-                        id="emailInput"
-                        aria-label="Email address"
-                    >
+                    <input type="email" name="email" placeholder="Enter your email" required id="emailInput"
+                        aria-label="Email address">
                     <button type="submit">Join Waitlist</button>
                 </form>
                 <p class="form-note" id="formMessage"></p>
-                
-                <div class="demo-video-container" style="margin-top: 40px; max-width: 800px; margin-left: auto; margin-right: auto; border-radius: 12px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.2); border: 1px solid rgba(255,255,255,0.1);">
-                    <video width="100%" controls autoplay muted loop playsinline>
-                        <source src="media/Demo2.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+
+                <!-- Video Demos Section -->
+                <div class="video-gallery">
+                    <h3 class="gallery-title">See Sparcle in Action</h3>
+
+                    <!-- Overview Video -->
+                    <div class="video-container" data-video-id="overview">
+                        <div class="video-label">
+                            <span class="label-number">1</span>
+                            <span class="label-text">Overview</span>
+                        </div>
+                        <video width="100%" preload="metadata">
+                            <source src="media/Overview.mp4" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                        <div class="video-controls">
+                            <div class="play-pause-btn">
+                                <span class="play-icon">▶</span>
+                                <span class="pause-icon">⏸</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Demo Videos Row -->
+                    <div class="demo-videos-row">
+                        <div class="video-container" data-video-id="enterprise">
+                            <div class="video-label">
+                                <span class="label-number">2</span>
+                                <span class="label-text">Enterprise</span>
+                            </div>
+                            <video width="100%" preload="metadata">
+                                <source src="media/Demo1.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="video-controls">
+                                <div class="play-pause-btn">
+                                    <span class="play-icon">▶</span>
+                                    <span class="pause-icon">⏸</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="video-container" data-video-id="agentic">
+                            <div class="video-label">
+                                <span class="label-number">3</span>
+                                <span class="label-text">Agentic</span>
+                            </div>
+                            <video width="100%" preload="metadata">
+                                <source src="media/Demo2.mp4" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="video-controls">
+                                <div class="play-pause-btn">
+                                    <span class="play-icon">▶</span>
+                                    <span class="pause-icon">⏸</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </section>
 
@@ -157,11 +207,14 @@
                 <div class="footer-links">
                     <a href="mailto:team@sparcle.app">Contact</a>
                 </div>
-                <p class="copyright">&copy; 2025 Sparcle. All rights reserved. <span style="opacity:.6">This site is a marketing preview; capabilities are subject to change.</span></p>
+                <p class="copyright">&copy; 2025 Sparcle. All rights reserved. <span style="opacity:.6">This site is a
+                        marketing preview; capabilities are subject to change.</span></p>
             </div>
         </footer>
     </div>
 
     <script src="script.js"></script>
+    <script src="video-expand.js"></script>
 </body>
+
 </html>
