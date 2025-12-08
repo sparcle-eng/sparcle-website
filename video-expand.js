@@ -30,6 +30,9 @@ document.addEventListener('DOMContentLoaded', function () {
             // If clicking controls, don't trigger expand logic (let controls handle it)
             if (e.target.closest('.video-controls')) return;
 
+            // If in native fullscreen, let the browser handle clicks (prevents double toggle)
+            if (document.fullscreenElement || document.webkitFullscreenElement) return;
+
             if (!container.classList.contains('expanded')) {
                 expandVideo(container, video);
             } else {
