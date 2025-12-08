@@ -21,7 +21,6 @@ body {
 .hero .headline {
     font-size: clamp(28px, 6vw, 48px);
     line-height: 1.1;
-    `
 }
 
 /* Navigation can wrap to avoid overflow on small screens */
@@ -175,7 +174,7 @@ body::before {
     margin: 0 auto;
     padding: 0 24px;
     position: relative;
-    z-index: 1;
+    /* z-index: 1; Removed to fix video popout stacking context */
     min-width: 450px;
 }
 
@@ -735,35 +734,35 @@ footer {
     }
 }
 
-/* Video Gallery Styles - Reimagined */
+
+
+
+/* Video Gallery - Row Layout */
 .video-gallery {
     margin-top: 60px;
-    max-width: 1000px;
+    max-width: 1200px; /* Increased width for row */
     margin-left: auto;
     margin-right: auto;
 }
 
-.gallery-title {
-    font-size: 32px;
-    font-weight: 700;
-    text-align: center;
-    margin-bottom: 40px;
-    background: var(--gradient);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+.video-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    position: relative;
 }
 
 .video-container {
     position: relative;
-    border-radius: 20px;
+    border-radius: 16px;
     overflow: hidden;
     cursor: pointer;
-    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
     border: 2px solid rgba(255, 255, 255, 0.1);
     background: linear-gradient(135deg, rgba(20, 20, 24, 0.8) 0%, rgba(30, 25, 35, 0.8) 100%);
-    margin-bottom: 24px;
+    aspect-ratio: 16/9; /* Keep aspect ratio */
+    z-index: 1;
 }
 
 .video-container:hover {
@@ -775,195 +774,170 @@ footer {
 .video-container video {
     display: block;
     width: 100%;
-    height: auto;
-    opacity: 0.7;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.8;
     transition: opacity 0.3s ease;
 }
 
-.video-container.playing video {
+.video-container:hover video {
     opacity: 1;
 }
 
-/* Video Label */
-.video-label {
-    position: absolute;
-    top: 20px;
-    left: 20px;
-    z-index: 10;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    background: rgba(0, 0, 0, 0.7);
-    backdrop-filter: blur(10px);
-    padding: 10px 20px;
-    border-radius: 12px;
+/* Expanded State (Popout) */
+.video-container.expanded {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    width: auto; /* Let width be determined by height + aspect ratio */
+    height: 90vh; /* Target 90% height */
+    max-width: 90vw; /* Ensure it doesn't overflow width */
+    aspect-ratio: 16/9;
+    z-index: 1000;
+    border-radius: 24px;
+    box-shadow: 0 50px 100px rgba(0, 0, 0, 0.8);
     border: 1px solid rgba(255, 255, 255, 0.2);
-    pointer-events: none;
+    cursor: default;
 }
 
-.label-number {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background: var(--gradient);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 700;
-    font-size: 16px;
-    color: white;
+.video-container.expanded video {
+    opacity: 1;
+    object-fit: contain;
+    background: black;
 }
 
-.label-text {
-    font-size: 18px;
-    font-weight: 600;
-    color: white;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+/* Backdrop for expanded state */
+body.has-expanded-video::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(10px);
+    z-index: 999;
+    opacity: 0;
+    animation: fadeIn 0.5s ease 0.3s forwards; /* 0.3s delay to let zoom finish first */
 }
 
-/* Video Controls - Play/Pause Button */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Video Controls - Bottom Bar */
 .video-controls {
     position: absolute;
-    top: 0;
+    bottom: 0;
     left: 0;
     right: 0;
-    bottom: 0;
+    height: 80px; /* Larger controls for expanded view */
     display: flex;
     align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg,
-            rgba(196, 95, 255, 0.2) 0%,
-            rgba(95, 173, 255, 0.2) 100%);
-    opacity: 1;
+    padding: 0 32px;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0) 100%);
+    opacity: 0;
     transition: opacity 0.3s ease;
     pointer-events: none;
 }
 
-.video-container.playing .video-controls {
-    opacity: 0;
+.video-container:hover .video-controls,
+.video-container.expanded .video-controls {
+    opacity: 1; /* Always show controls in expanded mode (or on hover) */
 }
 
-.video-container:hover .video-controls {
-    background: linear-gradient(135deg,
-            rgba(196, 95, 255, 0.3) 0%,
-            rgba(95, 173, 255, 0.3) 100%);
+/* Hide controls in small card view unless hovered */
+.video-container:not(.expanded) .video-controls {
+    height: 50px;
+    padding: 0 16px;
+}
+
+/* Control Buttons */
+.control-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    cursor: pointer;
+    padding: 0;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    pointer-events: auto;
+    width: 48px;
+    height: 48px;
+    backdrop-filter: blur(10px);
+}
+
+.video-container:not(.expanded) .control-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 14px;
+}
+
+.control-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+    border-color: rgba(255, 255, 255, 0.3);
 }
 
 .play-pause-btn {
-    width: 90px;
-    height: 90px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(20px);
-    border: 3px solid rgba(255, 255, 255, 0.3);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 36px;
-    color: white;
-    transition: all 0.3s ease;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    pointer-events: auto;
-    position: relative;
+    margin-right: auto;
 }
 
-.video-container:hover .play-pause-btn {
-    background: var(--gradient);
-    border-color: white;
-    transform: scale(1.15);
-    box-shadow: 0 15px 40px var(--shadow-elevated);
+.maximize-btn {
+    /* Kept for potential future specific styling or if we want to hide it in expanded mode later */
+    display: flex; 
+}
+
+.spacer {
+    flex: 1;
 }
 
 .play-icon,
 .pause-icon {
-    position: absolute;
-    transition: all 0.3s ease;
+    display: block;
+    font-size: 18px;
+}
+
+.video-container:not(.expanded) .play-icon,
+.video-container:not(.expanded) .pause-icon {
+    font-size: 14px;
 }
 
 .pause-icon {
-    opacity: 0;
-    transform: scale(0);
+    display: none;
 }
 
 .video-container.playing .play-icon {
-    opacity: 0;
-    transform: scale(0);
+    display: none;
 }
 
 .video-container.playing .pause-icon {
-    opacity: 1;
-    transform: scale(1);
-}
-
-/* Demo Videos Row */
-.demo-videos-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 24px;
-}
-
-/* When a video is playing, it takes more space */
-.demo-videos-row .video-container.playing {
-    grid-column: 1 / -1;
-    margin-bottom: 24px;
-}
-
-/* Adjust sibling videos when one is playing */
-.demo-videos-row.has-playing .video-container:not(.playing) {
-    opacity: 0.6;
-    transform: scale(0.98);
-}
-
-.demo-videos-row.has-playing .video-container:not(.playing):hover {
-    opacity: 1;
-    transform: scale(1);
+    display: block;
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
-    .demo-videos-row {
-        grid-template-columns: 1fr;
-        gap: 20px;
+@media (max-width: 900px) {
+    .video-row {
+        grid-template-columns: repeat(2, 1fr);
     }
-
-    .demo-videos-row .video-container.playing {
-        grid-column: 1;
-    }
-
-    .gallery-title {
-        font-size: 24px;
-        margin-bottom: 30px;
-    }
-
-    .play-pause-btn {
-        width: 70px;
-        height: 70px;
-        font-size: 28px;
-    }
-
-    .label-text {
-        font-size: 14px;
-    }
-
-    .label-number {
-        width: 28px;
-        height: 28px;
-        font-size: 14px;
+    
+    /* Make the first video span full width on tablet */
+    .video-container:first-child {
+        grid-column: 1 / -1;
     }
 }
 
-@media (max-width: 480px) {
-    .video-label {
-        top: 12px;
-        left: 12px;
-        padding: 8px 16px;
-        gap: 8px;
+@media (max-width: 600px) {
+    .video-row {
+        grid-template-columns: 1fr;
     }
-
-    .play-pause-btn {
-        width: 60px;
-        height: 60px;
-        font-size: 24px;
+    
+    .video-container.expanded {
+        width: 100vw;
+        height: auto;
+        border-radius: 0;
+        border: none;
     }
 }
