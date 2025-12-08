@@ -44,7 +44,11 @@ document.addEventListener('DOMContentLoaded', function () {
         // Play/Pause Button Click
         playPauseBtn.addEventListener('click', function (e) {
             e.stopPropagation();
-            togglePlay(container, video);
+            if (!container.classList.contains('expanded')) {
+                expandVideo(container, video);
+            } else {
+                togglePlay(container, video);
+            }
         });
 
         // Maximize Button Click -> Native Fullscreen
