@@ -4,20 +4,20 @@ Official website for [sparcle.app](https://sparcle.app) - AI-powered productivit
 
 ## Overview
 
-This is a minimal, static marketing website showcasing Sparcle with:
-- Coming soon messaging
-- Email waitlist signup
-- Feature highlights
+The official website for Sparcle, showcasing features and providing access to the **Alpha Release**.
+
+- Direct download for Alpha builds (`.zip` / `.dmg`)
+- Feature highlights and walkthrough videos
+- Installation guide (Alpha security notes)
 - Clean, modern design with dark mode support
-- Mobile responsive
 
 ## Features
 
 - 🎨 Modern gradient design with Sparcle branding
 - 🌓 Automatic dark/light mode based on system preference
 - 📱 Fully responsive mobile-first design
+- ⬇️ **Download Page**: Direct access to Alpha builds
 - ✨ Smooth animations and transitions
-- 📧 Simple waitlist signup form
 - ⚡ Pure HTML/CSS/JS - no build process required
 
 ## Local Development
@@ -40,6 +40,7 @@ Then visit http://localhost:8000
 ## Deployment
 
 This static site can be deployed to:
+
 - **GitHub Pages** (recommended for this repo)
 - **Netlify**
 - **Vercel**
@@ -58,6 +59,7 @@ Your site will be live at `https://rajenp.github.io/sparcle-website/`
 ### Custom Domain
 
 To use `sparcle.app`:
+
 1. Add a `CNAME` file with content: `sparcle.app`
 2. Configure DNS:
    - Add A records pointing to GitHub Pages IPs
@@ -68,20 +70,10 @@ To use `sparcle.app`:
 - **Colors**: Edit CSS variables in `styles.css` `:root` section
 - **Content**: Update text in `index.html`
 - **Logo**: Replace SVG in header section
-- **Waitlist**: Currently stores in localStorage - integrate with your backend API
-
-## Production Improvements
-
-For production deployment, consider:
-- Replace localStorage with actual backend API for waitlist
-- Add analytics (Google Analytics, Plausible, etc.)
-- Add meta tags for better SEO
-- Include favicon and app icons
-- Add screenshot/video when available
-- Set up email notifications for signups
+- **Downloads**: Update `download.html` with latest release links
 
 ## License
 
 Copyright © 2025 Sparcle. All rights reserved.
 
-See [LICENSE](../LICENSE) in main repository.
+See [LICENSE](LICENSE) for details.
