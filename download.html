@@ -11,6 +11,16 @@
     <meta property="og:url" content="https://sparcle.app/download">
     <title>Download Sparcle Alpha - AI-Powered Productivity for macOS</title>
     <link rel="stylesheet" href="styles.css">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z5BBF4KVH3"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-Z5BBF4KVH3');
+    </script>
 </head>
 
 <body>
@@ -19,14 +29,29 @@
             <div class="header-content">
                 <div class="header-top">
                     <div class="logo">
-                        <a href="index.html"
-                            style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 8px;">
-                            <span class="logo-icon">✨</span>
-                            <span class="logo-text">Sparcle</span>
-                        </a>
+                        <span class="logo-icon">✨</span>
+                        <span class="logo-text" id="typingText"></span>
                     </div>
                 </div>
-            </div>
+                <div class="header-bottom">
+                    <div class="context-bar">
+                        <span>Launch anywhere with Shift + ⌘ + Space • Context-aware AI • Powerful plugins</span>
+                    </div>
+                    <nav class="header-nav">
+                        <a href="index.html#agent" class="nav-tab active">
+                            <span class="tab-icon">✨</span>
+                            <span>Agent</span>
+                        </a>
+                        <a href="index.html#terminal" class="nav-tab">
+                            <span class="tab-icon">⌘</span>
+                            <span>Terminal</span>
+                        </a>
+                        <a href="index.html#settings" class="nav-tab">
+                            <span class="tab-icon">⚙️</span>
+                            <span>Settings</span>
+                        </a>
+                    </nav>
+                </div>
         </header>
 
         <main class="download-page">
@@ -40,7 +65,7 @@
 
                 <!-- Download Button -->
                 <div class="download-cta">
-                    <a href="#" id="downloadBtn" class="download-btn primary">
+                    <a href="https://github.com/rajenp/sparcle-website/releases/download/v0.1.0-alpha/Sparcle-alpha.zip" id="downloadBtn" class="download-btn primary">
                         <span class="download-icon">↓</span>
                         <div class="download-info">
                             <span class="download-text">Download Sparcle Alpha</span>
@@ -49,7 +74,7 @@
                     </a>
                     <p class="download-checksum">
                         <strong>SHA-256:</strong>
-                        <code id="checksum">Will be generated after release</code>
+                        <code id="checksum">bec39655a0689bcdb01fd181cf0147ccfb5f2daa1eb026452f06883d2fdc681b</code>
                     </p>
                 </div>
 
@@ -203,10 +228,7 @@
                 <div class="feedback-buttons">
                     <a href="mailto:team@sparcle.app?subject=Alpha Feedback" class="feedback-btn">
                         📧 Email Feedback
-                    </a>
-                    <a href="https://github.com/rajenp/sparcle/issues" target="_blank" class="feedback-btn secondary">
-                        🐛 Report Bug on GitHub
-                    </a>
+                    </a>                    
                 </div>
             </section>
         </main>
@@ -222,13 +244,13 @@
             </div>
         </footer>
     </div>
-
     <script>
-        // Update download button with actual URL when release is created
-        document.getElementById('downloadBtn').addEventListener('click', function (e) {
-            // For now, show alert - replace with actual GitHub Release URL
-            alert('Coming soon! This is a preview of the download page.');
-            e.preventDefault();
+        // Track download click
+        document.getElementById('downloadBtn').addEventListener('click', function() {
+            gtag('event', 'download', {
+                'file_name': 'Sparcle-alpha.zip',
+                'file_type': 'zip'
+            });
         });
     </script>
 </body>
