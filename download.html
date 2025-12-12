@@ -11,15 +11,15 @@
     <meta property="og:url" content="https://sparcle.app/download">
     <title>Download Sparcle Alpha - AI-Powered Productivity for macOS</title>
     <link rel="stylesheet" href="styles.css">
-    
+
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z5BBF4KVH3"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
-      gtag('config', 'G-Z5BBF4KVH3');
+        gtag('config', 'G-Z5BBF4KVH3');
     </script>
 </head>
 
@@ -57,7 +57,7 @@
         <main class="download-page">
             <!-- Download Hero -->
             <section class="download-hero">
-                <span class="badge">🚀 Alpha v0.1.0-alpha.1</span>
+                <span class="badge">🚀 Alpha v0.1.0-alpha.2</span>
                 <h1>Download Sparcle Alpha</h1>
                 <p class="download-subtitle">
                     AI-powered productivity assistant for macOS 13.0+
@@ -65,16 +65,17 @@
 
                 <!-- Download Button -->
                 <div class="download-cta">
-                    <a href="https://github.com/rajenp/sparcle-website/releases/download/v0.1.0-alpha/Sparcle-alpha.zip" id="downloadBtn" class="download-btn primary">
+                    <a href="https://github.com/rajenp/sparcle-website/releases/download/v0.1.0-alpha.2/Sparcle-alpha.zip"
+                        id="downloadBtn" class="download-btn primary">
                         <span class="download-icon">↓</span>
                         <div class="download-info">
                             <span class="download-text">Download Sparcle Alpha</span>
-                            <span class="download-meta">macOS 13.0+ • 10.9 MB</span>
+                            <span class="download-meta">macOS 13.0+ • 10 MB</span>
                         </div>
                     </a>
                     <p class="download-checksum">
                         <strong>SHA-256:</strong>
-                        <code id="checksum">bec39655a0689bcdb01fd181cf0147ccfb5f2daa1eb026452f06883d2fdc681b</code>
+                        <code id="checksum">027a3b6521202f64fd2c0beee80109e5550cc36693c6a5ca1795afb6d6022116</code>
                     </p>
                 </div>
 
@@ -108,7 +109,8 @@
                         <div class="step-content">
                             <h3>Extract the App</h3>
                             <p>Double-click <code>Sparcle-alpha.zip</code> in your Downloads folder to extract
-                                <code>Sparcle.app</code></p>
+                                <code>Sparcle.app</code>
+                            </p>
                         </div>
                     </div>
 
@@ -177,7 +179,8 @@
                             <p>macOS will prompt you automatically when you first launch Sparcle. You can also grant
                                 these manually in:</p>
                             <p><strong>System Settings</strong> → <strong>Privacy & Security</strong> →
-                                <strong>Accessibility / Full Disk Access</strong></p>
+                                <strong>Accessibility / Full Disk Access</strong>
+                            </p>
                         </div>
                     </div>
 
@@ -228,7 +231,7 @@
                 <div class="feedback-buttons">
                     <a href="mailto:team@sparcle.app?subject=Alpha Feedback" class="feedback-btn">
                         📧 Email Feedback
-                    </a>                    
+                    </a>
                 </div>
             </section>
         </main>
@@ -246,7 +249,7 @@
     </div>
     <script>
         // Track download click
-        document.getElementById('downloadBtn').addEventListener('click', function() {
+        document.getElementById('downloadBtn').addEventListener('click', function () {
             gtag('event', 'download', {
                 'file_name': 'Sparcle-alpha.zip',
                 'file_type': 'zip'
