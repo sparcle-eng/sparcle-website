@@ -1200,6 +1200,11 @@ body.has-expanded-video::after {
     background: rgba(95, 173, 255, 0.08);
     border-left: 3px solid var(--secondary);
     border-radius: 8px;
+    color: var(--secondary);
+}
+.info-box ul {
+   padding-left: 32px;
+   color: white;
 }
 
 .warning-box {
