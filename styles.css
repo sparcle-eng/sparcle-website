@@ -941,3 +941,476 @@ body.has-expanded-video::after {
         border: none;
     }
 }
+/* ============================================
+   DOWNLOAD PAGE STYLES
+   ============================================ */
+
+/*Download Page Layout */
+.download-page {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 0;
+}
+
+/* Download Hero */
+.download-hero {
+    text-align: center;
+    margin-bottom: 80px;
+}
+
+.download-hero h1 {
+    font-size: 52px;
+    font-weight: 700;
+    margin: 20px 0;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.download-subtitle {
+    font-size: 18px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 40px;
+}
+
+/* Download CTA */
+.download-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    margin: 40px 0;
+}
+
+.download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 40px;
+    background: var(--gradient);
+    color: white;
+    border-radius: 16px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 24px var(--shadow);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.download-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 32px var(--shadow-elevated), 0 0 40px var(--glow);
+}
+
+.download-btn.primary {
+    background: var(--gradient);
+}
+
+.download-btn.secondary {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.download-icon {
+    font-size: 24px;
+}
+
+.download-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+}
+
+.download-text {
+    font-size: 18px;
+}
+
+.download-meta {
+    font-size: 13px;
+    opacity: 0.7;
+    font-weight: 400;
+}
+
+.download-checksum {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.5);
+    font-family: 'SF Mono', 'Monaco', 'Courier New', monospace;
+}
+
+.download-checksum code {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 4px 8px;
+    border-radius: 4px;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+/* Alpha Notice */
+.alpha-notice {
+    margin: 40px 0;
+    padding: 24px 32px;
+    background: rgba(255, 200, 0, 0.08);
+    border-left: 4px solid #ffc800;
+    border-radius: 12px;
+    text-align: left;
+}
+
+.alpha-notice h3 {
+    font-size: 18px;
+    margin-bottom: 12px;
+    color: #ffc800;
+}
+
+.alpha-notice p {
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+}
+
+/* Installation Guide */
+.installation-guide {
+    margin: 80px 0;
+}
+
+.installation-guide h2 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 40px;
+    text-align: center;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.install-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.install-step {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+    padding: 24px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    border-radius: 16px;
+    border: 1px solid var(--glass-border);
+    transition: all 0.3s ease;
+}
+
+.install-step:hover {
+    border-color: var(--primary);
+    box-shadow: 0 8px 24px var(--shadow);
+}
+
+.install-step.important {
+    border-color: #ffc800;
+    background: rgba(255, 200, 0, 0.05);
+}
+
+.step-number {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--gradient);
+    color: white;
+    border-radius: 50%;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.install-step.important .step-number {
+    background: linear-gradient(135deg, #ffc800, #ff8800);
+}
+
+.step-content {
+    flex: 1;
+}
+
+.step-content h3 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: rgba(255, 255, 255, 0.95);
+}
+
+.step-content p {
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.7;
+    margin-bottom: 12px;
+}
+
+.step-content ul,
+.step-content ol {
+    color: rgba(255, 255, 255, 0.7);
+    line-height: 1.8;
+    padding-left: 24px;
+}
+
+.step-content li {
+    margin-bottom: 8px;
+}
+
+.step-content code {
+    background: rgba(255, 255, 255, 0.08);
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-family: 'SF Mono', 'Monaco', 'Courier New', monospace;
+    font-size: 14px;
+    color: var(--primary);
+}
+
+.step-content kbd {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 3px 8px;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-family: 'SF Pro Text', -apple-system, sans-serif;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Method Boxes */
+.method-box {
+    margin: 20px 0;
+    padding: 20px;
+    background: rgba(102, 126, 234, 0.08);
+    border-left: 3px solid var(--primary);
+    border-radius: 8px;
+}
+
+.method-box h4 {
+    font-size: 16px;
+    margin-bottom: 12px;
+    color: var(--primary);
+}
+
+/* Info/Warning Boxes */
+.info-box {
+    margin: 20px 0;
+    padding: 16px 20px;
+    background: rgba(95, 173, 255, 0.08);
+    border-left: 3px solid var(--secondary);
+    border-radius: 8px;
+}
+
+.warning-box {
+    margin: 16px 0;
+    padding: 16px 20px;
+    background: rgba(255, 100, 100, 0.08);
+    border-left: 3px solid #ff6464;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.warning-box p {
+    color: #ff8888;
+    font-weight: 600;
+    margin: 0;
+}
+
+.info-box p strong {
+    color: rgba(255, 255, 255, 0.95);
+}
+
+/* Requirements Section */
+.requirements {
+    margin: 60px 0;
+}
+
+.requirements h2 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.requirements ul {
+    list-style: none;
+    padding: 0;
+}
+
+.requirements li {
+    padding: 12px 16px;
+    margin-bottom: 8px;
+    background: var(--glass-bg);
+    border-radius: 8px;
+    border: 1px solid var(--glass-border);
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.requirements li::before {
+    content: '✓';
+    color: var(--primary);
+    font-weight: bold;
+    margin-right: 12px;
+}
+
+/* Known Issues Section */
+.known-issues {
+    margin: 60px 0;
+}
+
+.known-issues h2 {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Feedback Section */
+.feedback-section {
+    margin: 80px 0;
+    text-align: center;
+}
+
+.feedback-section h2 {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    background: var(--gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.feedback-section p {
+    font-size: 16px;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 32px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.feedback-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.feedback-btn {
+    padding: 14px 28px;
+    background: var(--gradient);
+    color: white;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px var(--shadow);
+}
+
+.feedback-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px var(--shadow-elevated);
+}
+
+.feedback-btn.secondary {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Responsive Design for Download Page */
+@media (max-width: 768px) {
+    .download-hero h1 {
+        font-size: 36px;
+    }
+
+    .install-step {
+        flex-direction: column;
+        gap: 16px;
+    }
+
+    .step-number {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+
+    .feedback-buttons {
+        flex-direction: column;
+    }
+
+    .feedback-btn {
+        width: 100%;
+    }
+}
+
+/* ============================================
+   HOMEPAGE DOWNLOAD CTA STYLES
+   ============================================ */
+
+.alpha-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin: 32px 0;
+}
+
+.download-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 32px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    color: white;
+    border-radius: 14px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 18px;
+    box-shadow: 0 8px 24px rgba(102, 126, 234, 0.4);
+}
+
+.download-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(102, 126, 234, 0.5);
+}
+
+.version-tag {
+    background: rgba(255,255,255,0.2);
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 0.8em;
+    font-weight: 500;
+}
+
+.alpha-note {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0;
+}
+
+.install-note {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.5);
+    max-width: 500px;
+    text-align: center;
+    line-height: 1.6;
+}
+
+.install-note a {
+    color: #667eea;
+    text-decoration: underline;
+    transition: color 0.2s ease;
+}
+
+.install-note a:hover {
+    color: #764ba2;
+}
